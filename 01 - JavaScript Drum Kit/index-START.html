@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 
@@ -47,20 +49,46 @@
     </div>
   </div>
 
-  <audio data-key="65" src="sounds/clap.wav"></audio>
-  <audio data-key="83" src="sounds/hihat.wav"></audio>
-  <audio data-key="68" src="sounds/kick.wav"></audio>
-  <audio data-key="70" src="sounds/openhat.wav"></audio>
-  <audio data-key="71" src="sounds/boom.wav"></audio>
-  <audio data-key="72" src="sounds/ride.wav"></audio>
-  <audio data-key="74" src="sounds/snare.wav"></audio>
-  <audio data-key="75" src="sounds/tom.wav"></audio>
-  <audio data-key="76" src="sounds/tink.wav"></audio>
+  <audio controls data-key="65" src="sounds/clap.wav"></audio>
+  <audio controls data-key="83" src="sounds/hihat.wav"></audio>
+  <audio controls data-key="68" src="sounds/kick.wav"></audio>
+  <audio controls data-key="70" src="sounds/openhat.wav"></audio>
+  <audio controls data-key="71" src="sounds/boom.wav"></audio>
+  <audio controls data-key="72" src="sounds/ride.wav"></audio>
+  <audio controls data-key="74" src="sounds/snare.wav"></audio>
+  <audio controls data-key="75" src="sounds/tom.wav"></audio>
+  <audio controls data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
+  <script>
+    var btnCollection = document.getElementsByClassName('key')
+    var audioCollection = document.getElementsByTagName('audio')
 
-</script>
+    var keys = []
+    var audio = {}
+
+    for (var i = 0; i < 9; i++) {
+      keys[i] = (btnCollection[i].dataset.key)
+      audio[keys[i]] = audioCollection[i].src
+    }
+
+    console.log(audio)
+    console.log(keys)
+
+    console.log(btnCollection)
+
+    for (var i = 0; i < 9; i++) {
+      btnCollection[i].addEventListener('keydown', function (event) {
+        for (var i = 0; i < 9; i++) {
+          if (event.keyCode === keys[i]) { console.log(event.keyCode) }
+          audioCollection[i].play()
+        }
+      }
+      )
+    }
+
+  </script>
 
 
 </body>
+
 </html>
