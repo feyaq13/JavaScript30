@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Console Tricks!</title>
 </head>
+
 <body>
 
   <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
   <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+    const dogs = [{
+      name: 'Snickers',
+      age: 2
+    }, {
+      name: 'hugo',
+      age: 8
+    }];
 
     function makeGreen() {
       const p = document.querySelector('p');
@@ -18,29 +26,55 @@
     }
 
     // Regular
+    console.log('hello my friend')
 
     // Interpolated
+    console.log('Hello I am a %s string', '😺')
+    console.log('Hello I am a %o string', 'document')
 
     // Styled
+    console.log('%cI am some text', 'text-shadow: 0 10px 10px lime')
 
     // warning!
+    console.warn('Warming')
 
     // Error :|
+    console.error('An error')
 
     // Info
+    console.info('Тут содержится какая-нибудь важная информация')
 
     // Testing
+    console.assert(1 === 2, 'That is wrong')
 
     // clearing
+    console.clear()
 
     // Viewing DOM Elements
+    // console.log(p)
+    // console.dir(p)
 
     // Grouping together
-
+    dogs.forEach(function (dog) {
+      console.groupCollapsed(dog.name)
+      console.log(dog.name, 'is', dog.age, `years old`)
+      console.groupEnd()
+    })
     // counting
+    console.count('wow') // wow: 1
+    console.count('wow') // wow: 2
+
+    console.clear()
 
     // timing
-
+    console.time('fetching data')
+    fetch('//api.github.com/users/feyaq13')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data').round()
+        console.log(data)
+      })
   </script>
 </body>
+
 </html>
